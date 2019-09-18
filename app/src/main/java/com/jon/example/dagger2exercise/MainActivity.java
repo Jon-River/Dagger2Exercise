@@ -24,5 +24,21 @@ public class MainActivity extends AppCompatActivity {
         Log.i("TAG", student.getName());
         Log.i("TAG", "Student="+student);
         Log.i("TAG", "StudentB="+studentB);
+        TestClass testClass = new TestClass();
+    }
+
+    public class TestClass {
+        @Inject
+        public Student studentA;
+
+        @Inject
+        public Student studentB;
+
+        public TestClass() {
+            DaggerMainActivityComponent.create().inject(this);
+            Log.i("TAG", "TestClass StudentA="+studentA);
+            Log.i("TAG", "TestClass StudentB="+studentB);
+        }
+
     }
 }
