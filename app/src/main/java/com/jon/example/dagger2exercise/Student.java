@@ -1,11 +1,11 @@
 package com.jon.example.dagger2exercise;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 public class Student {
     private String name = "None";
 
-    @Inject
     public Student() {
         name = "Default";
     }
