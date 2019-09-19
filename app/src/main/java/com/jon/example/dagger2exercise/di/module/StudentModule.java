@@ -9,7 +9,6 @@ import dagger.Provides;
 
 @Module
 public class StudentModule {
-    @Singleton
     @Provides
     public Student provideStudent() {
         return new Student();

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.jon.example.dagger2exercise.di.component.DaggerMainActivityComponent;
+import com.jon.example.dagger2exercise.di.component.DaggerStudentComponent;
 
 import javax.inject.Inject;
 
@@ -20,7 +21,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-        DaggerMainActivityComponent.create().inject(this);
+        //DaggerMainActivityComponent.create().inject(this);
+        DaggerMainActivityComponent.builder()
+                .studentComponent(DaggerStudentComponent.create())
+                .build().inject(this);
         Log.i("TAG", student.getName());
         Log.i("TAG", "Student="+student);
         Log.i("TAG", "StudentB="+studentB);
@@ -35,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         public Student studentB;
 
         public TestClass() {
-            DaggerMainActivityComponent.create().inject(this);
+            DaggerMainActivityComponent.builder()
+                    .studentComponent(DaggerStudentComponent.create())
+                    .build().inject(this);
             Log.i("TAG", "TestClass StudentA="+studentA);
             Log.i("TAG", "TestClass StudentB="+studentB);
         }
