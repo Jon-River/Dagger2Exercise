@@ -4,8 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.jon.example.dagger2exercise.di.component.DaggerMainActivityComponent;
+//import com.jon.example.dagger2exercise.di.component.DaggerMainActivityComponent;
+//import com.jon.example.dagger2exercise.di.component.DaggerStudentComponent;
+
+//import com.jon.example.dagger2exercise.di.component.DaggerMainActivityComponent;
 import com.jon.example.dagger2exercise.di.component.DaggerStudentComponent;
+import com.jon.example.dagger2exercise.di.component.MainActivityComponent;
+import com.jon.example.dagger2exercise.di.component.StudentComponent;
 
 import javax.inject.Inject;
 
@@ -20,11 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //DaggerMainActivityComponent.create().inject(this);
-        DaggerMainActivityComponent.builder()
-                .studentComponent(DaggerStudentComponent.create())
-                .build().inject(this);
+        setContentView(R.layout.activity_main);
+        DaggerStudentComponent.create().plus().inject(this);
         Log.i("TAG", student.getName());
         Log.i("TAG", "Student="+student);
         Log.i("TAG", "StudentB="+studentB);
@@ -39,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         public Student studentB;
 
         public TestClass() {
-            DaggerMainActivityComponent.builder()
-                    .studentComponent(DaggerStudentComponent.create())
-                    .build().inject(this);
+            DaggerStudentComponent.create().plus().inject(this);
             Log.i("TAG", "TestClass StudentA="+studentA);
             Log.i("TAG", "TestClass StudentB="+studentB);
         }
